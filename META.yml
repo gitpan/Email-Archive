@@ -19,14 +19,15 @@ no_index:
     - t
 requires:
   Carp: 0
+  DBD::SQLite: 0
   DBI: 0
   Email::Abstract: 0
-  Email::Simple: 0
+  Email::MIME: 0
   File::ShareDir: 0
   File::Slurp: 0
-  Moose: 0
+  Moo: 0
   SQL::Abstract: 0
   autodie: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

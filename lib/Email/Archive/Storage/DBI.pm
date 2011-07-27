@@ -1,18 +1,21 @@
 package Email::Archive::Storage::DBI;
-use Moose;
+use Moo;
 use Carp;
 use DBI;
 use File::ShareDir 'module_file';
 use File::Slurp 'read_file';
-use Email::Simple::Creator;
+use Email::MIME;
 use Email::Abstract;
 use SQL::Abstract;
+use Scalar::Util qw(looks_like_number);
 use autodie;
 with q/Email::Archive::Storage/;
 
 has sqla => (
   is   => 'ro',
-  isa  => 'SQL::Abstract',
+  isa  => sub { 
+    ref $_[0] eq 'SQL::Abstract' or die "sqla must be a SQL::Abstract object" 
+  },
   lazy => 1,
   default => sub { SQL::Abstract->new },
   handles => [qw/
@@ -23,7 +26,9 @@ has sqla => (
 
 has dbh => (
   is   => 'rw',
-  isa  => 'DBI::db',
+  isa  => sub { 
+    ref $_[0] eq 'DBI::db' or die "dbh must be a DBI handle",
+  },
   handles => [qw/
     prepare
     do
@@ -32,7 +37,9 @@ has dbh => (
 
 has deployed_schema_version => (
   is  => 'rw',
-  isa => 'Int',
+  isa => sub {
+    looks_like_number($_[0]) or die "deployed_schema_version must be integer"
+  },
   default => 0,
 );
 
@@ -62,7 +69,7 @@ sub search {
   my $sth = $self->prepare($sql);
   $sth->execute(@bind);
   my ($message) = $sth->fetchrow_hashref;
-  return Email::Simple->create(
+  return Email::MIME->create(
     header => [
       From    => $message->{from_addr},
       To      => $message->{to_addr},

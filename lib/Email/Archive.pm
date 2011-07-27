@@ -1,8 +1,8 @@
 package Email::Archive;
-use Moose;
+use Moo;
 use Email::Archive::Storage::DBI;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has storage => (
   is    => 'rw',
