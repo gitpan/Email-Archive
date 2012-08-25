@@ -14,8 +14,15 @@ lib/auto/Email/Archive/Storage/DBI/latest_schema.txt
 lib/Email/Archive.pm
 lib/Email/Archive/Storage.pm
 lib/Email/Archive/Storage/DBI.pm
+lib/Email/Archive/Storage/DBIC.pm
+lib/Email/Archive/Storage/DBIC/Schema.pm
+lib/Email/Archive/Storage/DBIC/Schema/Result/Messages.pm
+lib/Email/Archive/Storage/DBIC/Schema/Result/Metadata.pm
+lib/Email/Archive/Storage/MongoDB.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
 t/basic.t
+t/dbic.t
+t/mongodb.t

@@ -3,11 +3,12 @@ abstract: 'write emails to a database, fetch them'
 author:
   - ', 2011 Chris Nehren C<apeiron@cpan.org>.'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.36
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.36
 distribution_type: module
-generated_by: 'Module::Install version 1.01'
+dynamic_config: 1
+generated_by: 'Module::Install version 1.06'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -30,4 +31,4 @@ requires:
   autodie: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03

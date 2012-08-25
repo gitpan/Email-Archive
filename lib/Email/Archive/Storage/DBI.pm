@@ -40,7 +40,7 @@ has deployed_schema_version => (
   isa => sub {
     looks_like_number($_[0]) or die "deployed_schema_version must be integer"
   },
-  default => 0,
+  default => sub { 0 },
 );
 
 
